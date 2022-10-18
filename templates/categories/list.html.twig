@@ -14,7 +14,12 @@
                         <div class="card-body">
                             <h2 class="card-title">{{ product.name }}</h2>
                             <p class="card-text">{{ product.description }}</p>
-                            <a class="btn btn-primary" href="#">Voir les détails</a>
+                            <a class="btn btn-primary mb-3" href="{{ path('products_details', {"slug": product.slug}) }}">Voir les détails</a>
+                            {% if product.stock > 0 %}
+                            <a href="#" class="btn btn-success mb-3">Ajouter au panier</a>
+                            {% else %}
+                                <p class="text-danger">Temporairement en rupture de stock</p>
+                            {% endif %}
                         </div>
                     </article>
                  </div>

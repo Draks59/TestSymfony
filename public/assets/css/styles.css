@@ -1,0 +1,15 @@
+.titre_horaires{
+    font-size: xx-large;
+    text-align: center;
+}
+.horaires{
+    font-size: medium;
+    width: 300px;
+    height: 400px;
+    background-color: rgb(197,90,17,0.8);
+    border-radius: 20px;
+    color: white;
+    margin: auto;
+    padding: 10px 0px 10px 0px;
+
+}
