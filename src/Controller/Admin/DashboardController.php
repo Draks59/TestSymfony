@@ -2,8 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Categorie;
-use App\Entity\Coupon;
+use App\Entity\Image;
 use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -44,15 +43,15 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('MonProjet');
+            ->setTitle('Menu Admin');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app_main');
-        yield MenuItem::linkToCrud('Catégorie', 'fas fa-comments', Categorie::class);
+        yield MenuItem::linktoRoute('Retour au site', 'fas fa-home', 'app_main');
         yield MenuItem::linkToCrud('Produits', 'fas fa-map-marker-alt', Product::class);
+        yield MenuItem::linkToCrud('Images Produit', 'fas fa-comments', Image::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-comments', User::class);
-        yield MenuItem::linkToCrud('Coupons', 'fas fa-comments', Coupon::class);
+
     }
 }
