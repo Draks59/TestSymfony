@@ -9,18 +9,16 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>{{ controller_name }}! ✅</h1>
+    <h1>{{ controller_name }} {{ app.user.firstname }} ! ✅</h1>
 {% if is_granted('ROLE_ADMIN') %}
     <ul>
         <li><a href="{{ path('admin') }}"> Page d'administration </a>
         </li>
     </ul>
-
-{% else %}
-    
-    <ul>
-        <li>Bienvenue {{ app.user.firstname }}</li>
-    </ul>
 {% endif %}
+    <ul>
+        <li><a href="{{ path('app_profile_orders') }}"> cliquez ici pour voir vos commandes</a></li>
+    </ul>
+
 </div>
 {% endblock %}

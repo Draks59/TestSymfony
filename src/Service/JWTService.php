@@ -18,22 +18,22 @@ class JWTService
     
     public function generate(array $header, array $payload, string $secret, int $validity = 3600 ): string
     {
-        if($validity <= 0){
-            return "";
+        if($validity > 0){
+            $now = new DateTimeImmutable();
+            $exp = $now->getTimestamp() + $validity;
+
+            $payload['iat'] = $now->getTimestamp();
+            $payload['exp'] = $exp;
         }
         
-        $now = new DateTimeImmutable();
-        $exp = $now->getTimestamp() + $validity;
+        
 
-        $payload['iat'] = $now->getTimestamp();
-        $payload['exp'] = $exp;
-
-        // Encod en base64
+        // Encode en base64
 
         $base64Header = base64_encode(json_encode($header));
         $base64Payload = base64_encode(json_encode($payload));
 
-        // "nettoyage" des valeur encodées (retrait des + / et =)
+        // "nettoyage" des valeur encodées ( retrait des '+' '/' et '=' )
         $base64Header = str_replace(['+', '/', '='], ['-', '_', '']
         , $base64Header);
         $base64Payload = str_replace(['+', '/', '='], ['-', '_', '']
@@ -55,11 +55,58 @@ class JWTService
         return $jwt;
     }
 
+    // verification validité token
     public function isValid(string $token): bool
     {
         return preg_match(
             '/^[a-zA-Z0-9\-\_\=]+\.[a-zA-Z0-9\-\_\=]+\.[a-zA-Z0-9\-\_\=]+$/',
             $token
         ) === 1;
-    } // https://youtu.be/UrJUn2EL07U?t=3483 reprendre a la maison
+    } 
+
+    // Recuperation du Header
+    public function getheader(string $token): array
+    {
+        // on démonte le token 
+        $array = explode('.',$token);
+
+        // décoder le header
+        $header = json_decode(base64_decode($array[0]), true);
+
+        return $header;
+    }   
+
+    // Recuperation du payload
+    public function getPayload(string $token): array
+    {
+        // on démonte le token 
+        $array = explode('.',$token);
+
+        // décoder le payload
+        $payload = json_decode(base64_decode($array[1]), true);
+
+        return $payload;
+    }
+
+    // verification expiration token
+    public function isExpired(string $token): bool
+    {
+        $payload = $this->getPayload($token);
+        $now = new DateTimeImmutable();
+        
+        return $payload['exp'] < $now->getTimestamp();
+    }
+
+    // Verification de la signature du token
+    public function check(string $token, string $secret)
+    {
+        // recuperation header & payload
+        $header = $this->getHeader($token);
+        $payload = $this->getPayload($token);
+
+        // Régénèration du token
+        $verifToken = $this->generate($header, $payload, $secret, 0);
+
+        return $token === $verifToken;
+    }
 }

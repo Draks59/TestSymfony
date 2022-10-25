@@ -23,7 +23,7 @@
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
                     <div class="alert-message">
-                        <strong>Votre compte n'est pas encore activé</strong>, renvoyer le lien d'activation
+                        <strong>Votre compte n'est pas encore activé</strong>, <a href="{{ path('app_resend_verif') }}">renvoyer le lien d'activation</a>
                     </div>
                 </div>
             {% endif %}

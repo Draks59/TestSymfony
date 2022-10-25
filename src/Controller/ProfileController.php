@@ -13,7 +13,7 @@ class ProfileController extends AbstractController
     public function index(): Response
     {
         return $this->render('profile/index.html.twig', [
-            'controller_name' => 'Profil de l\'utilisateur',
+            'controller_name' => 'Profil de ',
         ]);
     }
 
@@ -21,7 +21,7 @@ class ProfileController extends AbstractController
     public function orders(): Response
     {
         return $this->render('profile/index.html.twig', [
-            'controller_name' => 'Commandes de l\'utilisateur',
+            'controller_name' => 'Commandes de ',
         ]);
     }
 }
