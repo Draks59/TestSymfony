@@ -52,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $is_verified = false;
 
     #[ORM\Column]
-    private ?string $resetPassword;
+    private ?string $resetPassword='';
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
