@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Compte de {{ app.user.firstname}}{% endblock %}
+{% block title %}Commandes de {{ app.user.firstname}}{% endblock %}
 
 {% block body %}
 <div class="row">
     <div class="col-3">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
               <span class="fs-4">Menu Profil</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
-                <a href="{{ path('app_profile_index') }}" class="nav-link active" aria-current="page">
+                <a href="{{ path('app_profile_index') }}" class="nav-link text-white">
                   Home
                 </a>
               </li>
@@ -24,7 +24,7 @@
               </li>
                 {% endif %}
               <li>
-                <a href="{{ path('app_profile_orders') }}" class="nav-link text-white">
+                <a href="{{ path('app_profile_orders') }}" class="nav-link active" aria-current="page">
                   Mes Commandes
                 </a>
               </li>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="col-8">
-        <h1>EN COURS DE CONSTRUCTION</h1>
-    </div>
+        <h1>EN CONSTRUCTION</h1>
+    </div> 
 </div>
 {% endblock %}

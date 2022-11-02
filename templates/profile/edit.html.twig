@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Compte de {{ app.user.firstname}}{% endblock %}
+{% block title %}Modification du profil{% endblock %}
 
 {% block body %}
 <div class="row">
@@ -12,7 +12,7 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
-                <a href="{{ path('app_profile_index') }}" class="nav-link active" aria-current="page">
+                <a href="{{ path('app_profile_index') }}" class="nav-link text-white">
                   Home
                 </a>
               </li>
@@ -29,7 +29,7 @@
                 </a>
               </li>
               <li>
-                <a href="{{ path('app_profile_edit', { 'id': app.user.id}) }}" class="nav-link text-white">
+                <a href="{{ path('app_profile_edit', { 'id': app.user.id}) }}" class="nav-link active" aria-current="page">
                   Modifier profil
                 </a>
               </li>
@@ -38,7 +38,11 @@
         </div>
     </div>
     <div class="col-8">
-        <h1>EN COURS DE CONSTRUCTION</h1>
+        <h1>/!\ En cours de construction /!\</h1>
+        {{ form_start(form)}}
+        <button class="btn btn-lg btn-primary mt-3 mb-3" type="submit">Envoyer</button>
+        {{ form_end(form)}}
     </div>
 </div>
+
 {% endblock %}
